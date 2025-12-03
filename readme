@@ -1,0 +1,34 @@
+# To-Do List Application
+
+## Description
+This is a simple To-Do List application designed to help users manage their tasks efficiently. It allows users to add, edit, delete, and mark tasks as completed.
+
+## Features
+- Add new tasks
+- Edit existing tasks
+- Delete tasks
+- Mark tasks as completed
+- User-friendly interface
+
+## Requirements
+- PHP (XAMPP or similar server environment)
+- Web browser
+
+## Installation
+1. Clone or download this repository to your local machine.
+2. Place the project folder in the `htdocs` directory of your XAMPP installation.
+3. Start the Apache server using the XAMPP control panel.
+4. Open your browser and navigate to `http://localhost/To_Do_List`.
+
+## Usage
+1. Open the application in your browser.
+2. Use the interface to manage your tasks.
+3. Save your progress and revisit the application as needed.
+
+## Contributing
+Contributions are welcome! Feel free to fork this repository and submit pull requests.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Copyright (c) [2025] [AMB]
