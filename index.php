@@ -72,11 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr>
-            <th>ID</th>
             <th>Title</th>
             <th>Description</th>
             <th>Status</th>
-            <th>--</th>
+            <th>Action</th> 
         </tr>
     </thead>
     <tbody>
@@ -92,14 +91,19 @@ $result = $conn->query($sql);
     while($row = $result->fetch_assoc()) {
 
         echo "<tr>";
-        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
         echo "<td>" . htmlspecialchars($row['title']) . "</td>";
         echo "<td>" . nl2br(htmlspecialchars($row['description'])) . "</td>";
         echo "<td>" . ($row['done'] ? $status_text[$row['done']] : 'Not Done') . "</td>";
         echo "<td>  
-            <form action=\"delete_task.php\" method=\"POST\" onsubmit=\"return confirm('Are you sure you want to delete this task?');\">
+            <form action=\"delete_task.php\" method=\"POST\" onsubmit=\"return confirm('Are you sure you want to Delete this task?');\">
                 <input type=\"hidden\" name=\"id\" value=\"" . htmlspecialchars($row['id']) . "\">
                 <button type=\"submit\" class=\"btn btn-danger btn-sm\">Delete</button>
+            </form>
+        
+      
+            <form action=\"delete_task.php\" method=\"POST\" onsubmit=\"return confirm('Are you sure you want to Update this task?');\">
+                <input type=\"hidden\" name=\"id\" value=\"" . htmlspecialchars($row['id']) . "\">
+                <button type=\"submit\" class=\"btn btn-danger btn-sm\">Update</button>
             </form>
         </td>";
         echo "</tr>";
