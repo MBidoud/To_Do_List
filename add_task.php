@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "<div class='alert alert-danger'>Error: " . $stmt->error . "</div>";
     }
-            // Redirect back to the form page
+    // Redirect back to the form page
             header("Location: index.php");  
             exit();
     $stmt->close();

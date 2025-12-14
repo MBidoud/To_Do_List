@@ -101,10 +101,17 @@ $result = $conn->query($sql);
             </form>
         
       <br>
-            <form action=\"update_task.php\" method=\"POST\" onsubmit=\"return confirm('Are you sure you want to Update this task?');\">
-                <input type=\"hidden\" name=\"id\" value=\"" . htmlspecialchars($row['id']) . "\">
-                <button type=\"submit\" class=\"btn btn-danger btn-sm\">Update</button>
-            </form>
+      <form style=\"display:inline;\">
+        <button type=\"button\" class=\"btn btn-warning btn-sm\" 
+            data-bs-toggle=\"modal\" 
+            data-bs-target=\"#updateTaskModal\" 
+            data-id=\"" . htmlspecialchars($row['id']) . "\" 
+            data-title=\"" . htmlspecialchars($row['title']) . "\" 
+            data-description=\"" . htmlspecialchars($row['description']) . "\">
+            Update
+        </button>
+    </form>
+    
         </td>";
         echo "</tr>";
     }
@@ -115,6 +122,52 @@ $result = $conn->query($sql);
 $sql = "DELETE FROM tasks WHERE done = 3";
 $conn->query($sql);
 ?>
+
+
+
+<!-- Update Task popup html -->
+<div class="modal fade" id="updateTaskModal" tabindex="-1" aria-labelledby="updateTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="update_task.php" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateTaskModalLabel">Update Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="updateTaskId">
+                    <div class="mb-3">
+                        <label for="updateTaskTitle" class="form-label">Title</label>
+                        <input type="text" class="form-control" name="title" id="updateTaskTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateTaskDescription" class="form-label">Description</label>
+                        <textarea class="form-control" name="description" id="updateTaskDescription" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Update Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- javascript for the popup update-->
+<script>
+    const updateTaskModal = document.getElementById('updateTaskModal');
+    updateTaskModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget; // Button that triggered the modal
+        const id = button.getAttribute('data-id');
+        const title = button.getAttribute('data-title');
+        const description = button.getAttribute('data-description');
+
+        // Populate the modal fields
+        document.getElementById('updateTaskId').value = id;
+        document.getElementById('updateTaskTitle').value = title;
+        document.getElementById('updateTaskDescription').value = description;
+    });
+</script>
 
 <!-- Bootstrap JS  -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

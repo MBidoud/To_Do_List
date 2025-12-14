@@ -1,18 +1,25 @@
 <?php
 include 'db_connect.php';
 
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST['id'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+
+    $stmt = $conn->prepare("UPDATE tasks SET title = ?, description = ? WHERE id = ?");
+    $stmt->bind_param("ssi", $title, $description, $id);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Task updated successfully!');</script>";
+    } else {
+        echo "<script>alert('Error updating task: " . $stmt->error . "');</script>";
+    }
+
+    $stmt->close();
+    $conn->close();
+
+    // Redirect back to the main page
+    header("Location: index.php");
+    exit();
 }
-
-$sql = "UPDATE tasks  WHERE id= ? ";
-
-if (mysqli_query($conn, $sql)) {
-  echo "Record updated successfully";
-} else {
-  echo "Error updating record: " . mysqli_error($conn);
-}
-
-mysqli_close($conn);
 ?>

@@ -1,4 +1,5 @@
 <?php
+// Database connection parameters
 $servername = "127.0.0.1"; 
 $username = "root";      
 $password = "";          
@@ -12,13 +13,11 @@ $conn = new mysqli($servername, $username, $password, $dbname, $port);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-//echo "Connected successfully <br>";
+//echo "Connected successfully <br>";(to test connection)
 
 // You can now execute SQL queries using $conn
 
-// Close the connection when you are done
-
-
+// Close the connection when you are done [using this ==   $conn->close();]
 
 
 ?>
