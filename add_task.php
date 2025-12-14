@@ -1,5 +1,6 @@
-<!-- Add Task Form -->
 <?php
+include 'db_connect.php';
+
 //   form submit
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST["title"] ?? "";

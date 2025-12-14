@@ -55,12 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="btn-group mb-3" role="group">
         <input type="radio" class="btn-check" name="choice" id="create" value="0" autocomplete="off" required>
         <label class="btn btn-outline-primary" for="create">Create</label>
-
+<!-- 
         <input type="radio" class="btn-check" name="choice" id="update" value="2" autocomplete="off">
         <label class="btn btn-outline-secondary" for="update">Update</label>
 
         <input type="radio" class="btn-check" name="choice" id="done" value="1" autocomplete="off">
-        <label class="btn btn-outline-success" for="done">Done</label>
+        <label class="btn btn-outline-success" for="done">Done</label> -->
     </div><br>
 
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -100,8 +100,8 @@ $result = $conn->query($sql);
                 <button type=\"submit\" class=\"btn btn-danger btn-sm\">Delete</button>
             </form>
         
-      
-            <form action=\"delete_task.php\" method=\"POST\" onsubmit=\"return confirm('Are you sure you want to Update this task?');\">
+      <br>
+            <form action=\"update_task.php\" method=\"POST\" onsubmit=\"return confirm('Are you sure you want to Update this task?');\">
                 <input type=\"hidden\" name=\"id\" value=\"" . htmlspecialchars($row['id']) . "\">
                 <button type=\"submit\" class=\"btn btn-danger btn-sm\">Update</button>
             </form>
@@ -116,7 +116,7 @@ $sql = "DELETE FROM tasks WHERE done = 3";
 $conn->query($sql);
 ?>
 
-<!-- Bootstrap JS (optional for button styles) -->
+<!-- Bootstrap JS  -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
